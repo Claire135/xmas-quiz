@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    background-color: #F9F6F1;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: "Mountains of Christmas", serif;
+}
+
+h2{
+    color: #BB2528;
+    font-family: "Mountains of Christmas", serif;
+
+}
+
+.headerDisplay {
+    display: flex;
+    background-color: #BB2528;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px 
+
+}
+
+.gameDisplay {
+    display: flex;
+    background-color: #146B3a;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 50px;
+    gap: 30px;
+}
+
+.scoreDisplay {
+    display: flex;
+    flex: 1;
+    background-color: #F9F6F1;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 200px;
+
+}
+
+.quizDisplay{
+    display: flex;
+    flex: 2;
+    background-color: #F9F6F1;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.footer{
+    display: flex;
+    background-color: #165B33;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 8px;
+    margin-top: 20px;
+
+}
