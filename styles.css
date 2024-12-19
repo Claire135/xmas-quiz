@@ -16,7 +16,7 @@ h1{
 h2{
     color: #BB2528;
     font-family: "Mountains of Christmas", serif;
-
+    font-size: 45px;
 }
 
 .headerDisplay {
@@ -43,11 +43,21 @@ h2{
     flex: 1;
     background-color: #F9F6F1;
     border-radius: 10px;
-    padding: 10px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items:start;
+    justify-content: space-around;
     min-width: 200px;
+    flex-direction: column;
+    padding:20px;
+    gap: 10px;
 
+}
+
+.profile-image {
+    background: #f7f7f7;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,.5);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
 }
 
 .quizDisplay{
@@ -60,7 +70,7 @@ h2{
 
 .footer{
     display: flex;
-    background-color: #165B33;
+    background-color: #333333;
     color: white;
     justify-content: center;
     align-items: center;
