@@ -11,6 +11,7 @@ h1{
     color: white;
     text-align: center;
     font-family: "Mountains of Christmas", serif;
+    font-size: 45px;
 }
 
 h2{
@@ -45,7 +46,7 @@ h2{
     background-color: #F9F6F1;
     border-radius: 10px;
     align-items:start;
-    justify-content: space-around;
+    justify-content:flex-start;
     min-width: 200px;
     flex-direction: column;
     padding:20px;
