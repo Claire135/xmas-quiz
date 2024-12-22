@@ -86,99 +86,79 @@ function startQuiz() {
   const questionsPerRound = 12;
   const roundText = document.querySelector("#roundText");
 
-  // Initialize scores
   let playerScores = [
     { name: players[0].name, score: 0 },
     { name: players[1].name, score: 0 },
     { name: players[2].name, score: 0 },
   ];
 
-  // Play the quiz for the specified number of rounds
+    // Play the quiz for the specified number of rounds
   for (let roundNo = 1; roundNo <= rounds; roundNo++) {
-    console.log(`Round ${roundNo}`);
+      // Update roundText dynamically
+      roundText.textContent = `Round ${roundNo}`;
 
-    const rounds = document.createElement("div");
-    rounds.classList.add("rounds");
-    rounds.textContent = `Round ${roundNo}`;
+    let questionIndex = 0; // Track the current question index globally
 
-    roundText.appendChild(rounds);
-  
+    const playerName = document.querySelector(".playerName");
+    const questionText = document.querySelector(".questionText");
+    const AnswerBtn = document.querySelector("#AnswerBtn");
+    const rightBtn = document.querySelector("#rightBtn");
+    const wrongBtn = document.querySelector("#wrongBtn");
 
-    // Loop through questions for the round
-    for (let questionNo = 1; questionNo <= questionsPerRound; questionNo++) {
-      // Determine which player's turn it is
-      const playerIndex = (questionNo - 1) % 3; // Cycles between 0, 1, 2
+    function nextQuestion() {
+      questionIndex++;
+
+    // If all questions are answered, end the quiz
+      if (questionIndex >= quiz.length) {
+        console.log("Quiz complete!");
+        console.log("Final Scores:");
+        playerScores.forEach((player) => console.log(`${player.name}: ${player.score}`));
+        return;
+      }
+
+    // Update current player and question
+      const playerIndex = questionIndex % 3;
       const currentPlayer = players[playerIndex];
+      const question = quiz[questionIndex];
 
-      console.log(`${currentPlayer.name}'s turn`);
-
-      const playerContainer = document.querySelector("#playerContainer");
-
-      const playerName = document.createElement("div");
-      playerName.classList.add("playerName");
       playerName.textContent = `${currentPlayer.name}'s turn`;
+      questionText.textContent = question.question;
 
-      playerContainer.appendChild(playerName);
-
-      // Calculate the question index in the quiz array
-      const questionIndex = (roundNo - 1) * questionsPerRound + (questionNo - 1);
-
-      // Check if the question exists in the quiz array
-      if (questionIndex < quiz.length) {
-        const question = quiz[questionIndex];
-        console.log(`Question: ${question.question}`);
-        console.log(`Answer: ${question.answer}`);
-
-        const questionContainer = document.querySelector("#questionContainer");
-
-        const questionText = document.createElement("div");
-        questionText.classList.add("questionText");
-        questionText.textContent = `${question.question}`;
-  
-        questionContainer.appendChild(questionText);
-
-        if (question.image) {
-          console.log(`Image: ${question.image}`);
-        }
-
-        const AnswerBtn = document.querySelector("#AnswerBtn");
-        btn.addEventListener("click", () => {
-        alert(`${question.answer}`);
-        });
-
-        const rightBtn = document.querySelector("#rightBtn");
-        btn.addEventListener("click", () => {
-        playerScores[playerIndex].score++;
-        });
-
-        const wrongBtn = document.querySelector("#wrongBtn");
-        btn.addEventListener("click", () => {
-        alert(`${question.answer}`);
-        });
-
-        // Simulate whether the player answers correctly
-        const isCorrect = Math.random() > 0.5; // 50% chance of correct answer
-        if (isCorrect) {
-          playerScores[playerIndex].score++;
-          console.log(`${currentPlayer.name} answered correctly!`);
-        } else {
-          console.log(`${currentPlayer.name} answered incorrectly.`);
-        }
-      } else {
-        console.log("No more questions available in the quiz.");
+      if (question.image) {
+        const questionImage = document.querySelector("#questionImage");
+        questionImage.src = question.image;
+        questionImage.alt = `${question.question}`;
       }
     }
-  }
 
-  // Display final scores
-  console.log("Final Scores:");
-  playerScores.forEach((player) => {
-    console.log(`${player.name}: ${player.score}`);
-  });
+    // Event listeners for buttons
+    AnswerBtn.addEventListener("click", () => {
+      alert(`Answer: ${quiz[questionIndex].answer}`);
+    });
+
+    rightBtn.addEventListener("click", () => {
+      const playerIndex = questionIndex % 3;
+      playerScores[playerIndex].score++;
+      updateScores();
+      nextQuestion();
+    });
+
+    wrongBtn.addEventListener("click", () => {
+      nextQuestion();
+    });
+
+    // Initial question setup
+    nextQuestion();
+
+    function updateScores() {
+      document.querySelector(".player1Score").textContent = `${players[0].name}: ${playerScores[0].score}`;
+      document.querySelector(".player2Score").textContent = `${players[1].name}: ${playerScores[1].score}`;
+      document.querySelector(".player3Score").textContent = `${players[2].name}: ${playerScores[2].score}`;
+    }
+  }  
 }
 
 const btnStart = document.querySelector("#startQuiz");
 btnStart.addEventListener("click", () => {
   startQuiz();
 });
-
