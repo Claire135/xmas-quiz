@@ -83,6 +83,8 @@ const quiz = [
 
 function startQuiz() {
   const rounds = 5;
+  const questionsPerRound = 12;
+  const roundText = document.querySelector("#roundText");
 
   // Initialize scores
   let playerScores = [
@@ -91,113 +93,92 @@ function startQuiz() {
     { name: players[2].name, score: 0 },
   ];
 
+  // Play the quiz for the specified number of rounds
   for (let roundNo = 1; roundNo <= rounds; roundNo++) {
-    // Display round number
-    //const roundCall = document.createElement("div");
-    //roundCall.textContent = `Round ${roundNo}`;
-    //roundDisplay.appendChild(roundCall);
-    console.log(`Round no: ${roundNo}`)
+    console.log(`Round ${roundNo}`);
 
-    const questionPerRound = 12;
-    function playRound(){
-      for(let questionNo=1; questionNo<=questionsPerRound; questionNo++){
-        console.log(`Question no: ${questionNo}`)
-          
-        function getPlayerTurn(questionNo){
-            if ((questionNo=1) || (questionNo=4) || (questionNo=7) || (questionNo=10)){
-              let playerTurn = player1Turn;
-            }
-            else if ((questionNo=2) || (questionNo=5) || (questionNo=8) || (questionNo=11)){
-              let playerTurn = player2Turn;
-            }
-            else if ((questionNo=3) || (questionNo=6) || (questionNo=9) || (questionNo=12)){
-              let playerTurn = player3Turn;
-            } 
-            return playerTurn;             
-          }
+    const rounds = document.createElement("div");
+    rounds.classList.add("rounds");
+    rounds.textContent = `Round ${roundNo}`;
 
-          const whichPlayer = getPlayerTurn(questionNo);
-          console.log(`Player is ${whichPlayer}`)
+    roundText.appendChild(rounds);
+  
 
-          function displayQuiz(whichPlayer, players, i){
-            if (whichPlayer === player1){
-              console.log(`${players[0].name}'s turn`)
-              console.log(quiz[questionNo].question)
-              console.log(quiz[questionNo].answer)
-            }
-            else if (whichPlayer === player2) {
-              console.log(`${players[1].name}'s turn`)
-              console.log(quiz[questionNo].question)
-              console.log(quiz[questionNo].answer)
-            }
-            else if (whichPlayer === player3) {
-              console.log(`${players[2].name}'s turn`)
-              console.log(quiz[questionNo].question)
-              console.log(quiz[questionNo].answer)
-            }
-          }
-        
-    
+    // Loop through questions for the round
+    for (let questionNo = 1; questionNo <= questionsPerRound; questionNo++) {
+      // Determine which player's turn it is
+      const playerIndex = (questionNo - 1) % 3; // Cycles between 0, 1, 2
+      const currentPlayer = players[playerIndex];
+
+      console.log(`${currentPlayer.name}'s turn`);
+
+      const playerContainer = document.querySelector("#playerContainer");
+
+      const playerName = document.createElement("div");
+      playerName.classList.add("playerName");
+      playerName.textContent = `${currentPlayer.name}'s turn`;
+
+      playerContainer.appendChild(playerName);
+
+      // Calculate the question index in the quiz array
+      const questionIndex = (roundNo - 1) * questionsPerRound + (questionNo - 1);
+
+      // Check if the question exists in the quiz array
+      if (questionIndex < quiz.length) {
+        const question = quiz[questionIndex];
+        console.log(`Question: ${question.question}`);
+        console.log(`Answer: ${question.answer}`);
+
+        const questionContainer = document.querySelector("#questionContainer");
+
+        const questionText = document.createElement("div");
+        questionText.classList.add("questionText");
+        questionText.textContent = `${question.question}`;
+  
+        questionContainer.appendChild(questionText);
+
+        if (question.image) {
+          console.log(`Image: ${question.image}`);
+        }
+
+        const AnswerBtn = document.querySelector("#AnswerBtn");
+        btn.addEventListener("click", () => {
+        alert(`${question.answer}`);
+        });
+
+        const rightBtn = document.querySelector("#rightBtn");
+        btn.addEventListener("click", () => {
+        playerScores[playerIndex].score++;
+        });
+
+        const wrongBtn = document.querySelector("#wrongBtn");
+        btn.addEventListener("click", () => {
+        alert(`${question.answer}`);
+        });
+
+        // Simulate whether the player answers correctly
+        const isCorrect = Math.random() > 0.5; // 50% chance of correct answer
+        if (isCorrect) {
+          playerScores[playerIndex].score++;
+          console.log(`${currentPlayer.name} answered correctly!`);
+        } else {
+          console.log(`${currentPlayer.name} answered incorrectly.`);
+        }
+      } else {
+        console.log("No more questions available in the quiz.");
       }
     }
   }
+
+  // Display final scores
+  console.log("Final Scores:");
+  playerScores.forEach((player) => {
+    console.log(`${player.name}: ${player.score}`);
+  });
 }
 
-console.log(startQuiz())
-
-
-/*
-        function getQuizQuestion(quiz){
-
-        function displayAnswer(quiz){
-          const btnAnswer = document.querySelector("#answerQuestion")
-          btnStart.addEventListener("click"), () => {
-            console.log(quiz[i].answer)
-          }
-        }
-
-        function player2Turn(players, quiz){
-          function getPlayerProfile(players){
-              
-          }
-  
-          function getQuizQuestion(quiz){
-  
-          function displayAnswer(quiz){
-            const btnAnswer = document.querySelector("#answerQuestion")
-            btnStart.addEventListener("click"), () => {
-              console.log(quiz[i].answer)
-            }
-          }
-
-          function player3Turn(players, quiz){
-            function getPlayerProfile(players){
-                
-            }
-    
-            function getQuizQuestion(quiz){
-    
-            function displayAnswer(quiz){
-              const btnAnswer = document.querySelector("#answerQuestion")
-              btnStart.addEventListener("click"), () => {
-                console.log(quiz[i].answer)
-              }
-            }
-
-        }
-
-        function augmentScore(){
-
-        }
-      }
-    }
- 
-}
-
-// Add event listener to start quiz button
 const btnStart = document.querySelector("#startQuiz");
 btnStart.addEventListener("click", () => {
   startQuiz();
 });
 
-*/
