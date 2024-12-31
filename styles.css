@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
     display: flex;
     flex-direction: column;
     margin: 0px;
     background-color: #F9F6F1;
+    font-family: "Mountains of Christmas", serif;
 }
 
 h1{
@@ -34,10 +36,72 @@ h2{
 .gameDisplay {
     display: flex;
     background-color: #146B3a;
+    flex-direction: column;
+}
+
+.sub-game-display{
+    display: flex;
     flex-direction: row;
-    justify-content: space-around;
     padding: 50px;
     gap: 30px;
+    justify-content: space-around;
+}
+
+.start-button-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+
+}
+
+.playerBox{
+    display:flex;
+    align-items: center;
+}
+
+#startQuiz{
+    background-color:#F9F6F1;
+    color:#BB2528;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Mountains of Christmas", serif;
+    border-radius: 10px;
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 0 6px #BB2528;; /* Subtle shadow */
+    border: #BB2528 2px solid ; 
+    width: 160px;
+}
+
+#playerImage{
+        background: #f7f7f7;
+        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .5);
+        border-radius: 50%;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;  /* Ensures the image doesn't overflow the circle */
+    }
+    
+#playerImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+
+}
+
+#playerContainer{
+    display: flex;
+    color: #BB2528;
+    font-size: 40px;
+    padding: 30px;
+    font-family: "Mountains of Christmas", serif;
+
 }
 
 .scoreDisplay {
@@ -88,6 +152,77 @@ h2{
     background-color: #F9F6F1;
     border-radius: 10px;
     padding: 50px;
+    flex-direction: column;
+}
+
+#questionContainer{
+    display: flex;
+    color:#333333;
+    font-size: 35px;
+    font-family: "Roboto", serif;
+    padding: 30px 30px;
+}
+
+#answerText{
+    display: flex;
+    color:#146B3a;
+    font-size: 25px;
+    font-family: "Roboto", serif;
+    padding: 30px 30px;
+
+}
+
+#AnswerBtn{
+    background-color:#F9F6F1;
+    color:#BB2528;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Mountains of Christmas", serif;
+    border-radius: 10px;
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 0 6px #BB2528;; /* Subtle shadow */
+    border:#9b9b9b 2px solid ; 
+}
+
+.right-wrong-button-box{
+    display:flex;
+    justify-content: space-around;
+    gap: 50px;
+    padding: 30px;
+}
+#rightBtn{
+    background-color:#146B3a;
+    color:#F9F6F1;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Mountains of Christmas", serif;
+    border-radius: 10px;
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 140px;
+}
+
+#wrongBtn{
+    background-color:#BB2528;
+    color:#F9F6F1;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Mountains of Christmas", serif;
+    border-radius: 10px;
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 140px;
+}
+
+
+.player-profile-box{
+    display: flex;
+    flex-direction: row;
+    color:#333333;
 }
 
 .footer{
@@ -101,3 +236,4 @@ h2{
     margin-top: 20px;
 
 }
+
