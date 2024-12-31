@@ -127,7 +127,6 @@ function startQuiz() {
     playerProfileImage.classList.add("playerProfileImage");
     playerProfileImage.src = currentPlayer.image;
     playerProfileImage.alt = `${currentPlayer.name}'s image`;
-    playerImage.appendChild(playerProfileImage);
     
   
     playerName.textContent = `${currentPlayer.name}'s turn`;
